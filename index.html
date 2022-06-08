@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JSON Tabulator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- JSONView -->
+    <link rel="stylesheet" type="text/css" href="static/jsonview/jquery.jsonview.css"  media="screen" />
+
+    <!-- JSON Tabulator -->
+    <link rel="stylesheet" type="text/css" href="static/jsontabulator/style.css"  media="screen" />
+  </head>
+
+  <body>
+    <h2>JSON Tabulator</h2>
+
+    <!-- Alerts -->
+    <div class="alert alert-success" id="success-alert" style="display: none;"></div>
+    <div class="alert alert-danger" id="danger-alert" style="display: none;"></div>
+    <div class="alert alert-warning" id="warning-alert" style="display: none;"></div>
+
+    <form>
+      <!-- Step 1: choose JSON file and load it -->
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label">Step 1</label>
+        <div class="col-sm-4">
+          <div class="file btn-sm">
+            <input type="file" accept=".json" id="files" name="file" class="form-control-file" />
+          </div>
+        </div>
+        <div class="col-sm-1">
+          <span class="load-file">
+            <button type="button" class="btn btn-dark" id="load-btn">Load file</button>
+          </span>
+        </div>
+        <label id="byte-range" class="col-sm-6 col-form-label"></label>
+      </div>
+
+      <!-- Step 2: JSON viewer buttons (expand/collapse, toggle levels) -->
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label">Step 2</label>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-primary" id="collapse-btn">Collapse</button>
+          <button type="button" class="btn btn-primary" id="expand-btn">Expand</button>
+        </div>
+        <div class="col-sm-7">
+          <button type="button" class="btn btn-info" id="toggle-btn">Toggle</button>
+          <button type="button" class="btn btn-info" id="toggle-level1-btn">Toggle Level 1</button>
+          <button type="button" class="btn btn-info" id="toggle-level2-btn">Toggle Level 2</button>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-1"></label>
+        <div class="col-sm-11">
+          <div id="json"></div>
+        </div>
+      </div>
+
+      <!-- Step 3: enter JSON path to a node and tabulate + export to CSV -->
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label">Step 3</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="nodes" name="nodes" size="20" placeholder="JSON path" required>
+        </div>
+        <div class="col-sm-7">
+          <button type="button" class="btn btn-success" id="tabulate-btn">Tabulate</button>
+          <button type="button" class="btn btn-success" id="export-btn">CSV Export</button>
+        </div>
+      </div>
+    </form>
+
+    <div id="myGrid" class="ag-theme-alpine"></div>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Twitter Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- JSONView -->
+    <script type="text/javascript" src="static/jsonview/jquery.jsonview.js"></script>
+
+    <!-- Javascript Grid (community/enterprise) -->
+    <script src="https://unpkg.com/ag-grid-community@27.3.0/dist/ag-grid-community.min.js"></script>
+    <!-- <script src="https://unpkg.com/ag-grid-enterprise@27.3.0/dist/ag-grid-enterprise.min.js"></script> -->
+
+    <!-- JSON Tabulator -->
+    <script src="static/jsontabulator/main.js"></script>
+    <script src="static/jsontabulator/script.js"></script>
+
+  </body>
+</html>
